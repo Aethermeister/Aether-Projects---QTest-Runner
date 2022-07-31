@@ -52,3 +52,9 @@ compile_commands.json
 *creator.user*
 
 *_qmlcache.qrc
+
+
+#project specific ignore
+Aether QTest Runner/.vs/
+Aether QTest Runner/aether_qtest_runner_executable/x64/Debug/*
+Aether QTest Runner/build/*
