@@ -56,5 +56,9 @@ compile_commands.json
 
 #project specific ignore
 Aether QTest Runner/.vs/
+
 Aether QTest Runner/aether_qtest_runner_executable/x64/Debug/*
 Aether QTest Runner/build/*
+
+Aether QTest Runner/dummy_qtests/x64/Debug/*
+Aether QTest Runner/dummy_qtests_build/*
