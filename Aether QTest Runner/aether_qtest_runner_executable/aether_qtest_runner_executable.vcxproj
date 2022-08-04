@@ -87,16 +87,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="TestExecutionProgressDialog.cpp" />
     <ClCompile Include="TestRunConfigurationWidget.cpp" />
     <QtRcc Include="aether_qtest_runner.qrc" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="MainWindow.h" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="TestExecutionProgressDialog.ui" />
     <QtUic Include="TestRunConfigurationWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestRunConfigurationWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="TestExecutionProgressDialog.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

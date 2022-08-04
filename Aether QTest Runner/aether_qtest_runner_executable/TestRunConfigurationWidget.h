@@ -1,7 +1,21 @@
 #pragma once
 
-#include <QWidget>
+#include <QtWidgets/QWidget>
 #include "ui_TestRunConfigurationWidget.h"
+
+struct TestRunConfigurationData
+{
+	QString test_executable_path;
+	QString test_results_path;
+	QString working_directory;
+};
+
+struct TestRunProcessData
+{
+	int exit_code;
+	QString standard_output;
+	QString standard_error;
+};
 
 class TestRunConfigurationWidget : public QWidget
 {
@@ -22,4 +36,9 @@ private:
 private slots:
 	void BrowseTestExecutable();
 	void BrowseTestResults();
+
+	void StartTest();
+
+signals:
+	void TestConfigurationDataPrepared(const TestRunConfigurationData& test_configuration_data);
 };

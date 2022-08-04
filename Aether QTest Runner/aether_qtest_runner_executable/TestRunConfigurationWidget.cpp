@@ -1,6 +1,7 @@
 #include "TestRunConfigurationWidget.h"
 
-#include <QtWidgets\QFileDialog>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QMessageBox>
 
 TestRunConfigurationWidget::TestRunConfigurationWidget(QWidget *parent)
 	: QWidget(parent)
@@ -17,6 +18,8 @@ void TestRunConfigurationWidget::InitializeConnections() const
 	connect(ui.m_browse_test_results_btn, &QPushButton::clicked, this, &TestRunConfigurationWidget::BrowseTestResults);
 
 	connect(ui.m_analyze_code_coverage_check_box, &QCheckBox::toggled, ui.m_code_coverage_configuration_widget, &QWidget::setVisible);
+
+	connect(ui.m_run_test_btn, &QPushButton::clicked, this, &TestRunConfigurationWidget::StartTest);
 }
 
 void TestRunConfigurationWidget::InitializeUi()
@@ -54,4 +57,37 @@ void TestRunConfigurationWidget::BrowseTestResults()
 	{
 		ui.m_path_to_test_results_line_edit->setText(selected_folder);
 	}
+}
+
+void TestRunConfigurationWidget::StartTest()
+{
+	const auto test_executable_path = ui.m_path_to_test_executable_line_edit->text();
+	const auto test_executable_info = QFileInfo(test_executable_path);
+
+	if (!test_executable_info.exists())
+	{
+		QMessageBox::critical(this, "Test configuration error", "Selected test executable does not exist");
+		return;
+	}
+
+	const auto test_results_path = ui.m_path_to_test_results_line_edit->text();
+	const auto test_results_dir = QDir(test_results_path);
+
+	if (!test_results_dir.exists())
+	{
+		const auto test_results_dir_creation = test_results_dir.mkpath(test_results_path);
+		if (!test_results_dir_creation)
+		{
+			QMessageBox::critical(this, "Test configuration error", "Selected test results folder does not exist and it could not be created");
+			return;
+		}
+	}
+
+	TestRunConfigurationData test_run_configuration_data;
+	test_run_configuration_data.test_executable_path = test_executable_path;
+	test_run_configuration_data.test_results_path = test_results_path;
+	test_run_configuration_data.working_directory = test_executable_info.absolutePath();
+
+	emit TestConfigurationDataPrepared(test_run_configuration_data);
+	close();
 }
