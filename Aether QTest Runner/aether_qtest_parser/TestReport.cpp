@@ -22,6 +22,11 @@ const QVector<TestSuite>& TestReport::TestSuites() const
 	return m_test_suites;
 }
 
+void TestReport::AddError(const XMLError& xml_error)
+{
+	m_parser_errors.append(xml_error);
+}
+
 int TestReport::TestSuiteCount() const
 {
 	return m_test_suites.count();

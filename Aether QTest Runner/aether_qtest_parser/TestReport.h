@@ -37,6 +37,13 @@ public:
 	 * @return The test suites in the test report
 	*/
 	const QVector<TestSuite>& TestSuites() const;
+
+	/**
+	 * @brief Add an XML error to the test report
+	 * 
+	 * @param xml_error The XML error which describes the occured issue
+	*/
+	void AddError(const XMLError& xml_error);
 	
 	/**
 	 * @brief Returns the number of test suites of the test report
@@ -78,5 +85,9 @@ private:
 	 * @brief The list of TestSuite objects in the test report
 	*/
 	QVector<TestSuite> m_test_suites;
+	/**
+	 * @brief List of xml parser errors
+	*/
+	QVector<XMLError> m_parser_errors;
 };
 

@@ -28,22 +28,28 @@ void QtXMLTestResultParser::ParseQtXMLTestResult(const QString& file)
 	QFile test_result_file(file);
 	if (!test_result_file.open(QIODevice::ReadOnly))
 	{
-		//TODO: set error message
+		XMLError xml_file_error(file);
+		xml_file_error.SetErrorMessage(QString("Test result file could not be opened: %0").arg(test_result_file.errorString()));
+		m_test_report.AddError(xml_file_error);
+
 		return;
 	}
 
 	//Read the test result file content and try to convert it to xml format
 	//Set the XMLError object if an error occurs
 	QDomDocument qt_xml_test_result_document("QtTestResultDocument");
-	XMLError xml_error(file);
+	XMLError xml_parser_error(file);
 
-	if (TryToCreateDomXMLDocument(test_result_file.readAll(), qt_xml_test_result_document, xml_error))
+	if (TryToCreateDomXMLDocument(test_result_file.readAll(), qt_xml_test_result_document, xml_parser_error))
 	{
 		//Get the root element of the xml document and check wheter it is an appropriate Qt generated test result
 		const auto qt_xml_document_element = qt_xml_test_result_document.documentElement();
 		if (qt_xml_document_element.tagName() != "TestCase")
 		{
-			//TODO: set error message
+			XMLError xml_test_case_error(file);
+			xml_test_case_error.SetErrorMessage("Test result file does not contain appropriate xml tags");
+			m_test_report.AddError(xml_test_case_error);
+
 			return;
 		}
 
@@ -61,6 +67,10 @@ void QtXMLTestResultParser::ParseQtXMLTestResult(const QString& file)
 		ExtractTestFunctionData(qt_xml_test_result_document, test_suite);
 
 		m_test_report.AddTestSuite(test_suite);
+	}
+	else
+	{
+		m_test_report.AddError(xml_parser_error);
 	}
 }
 
