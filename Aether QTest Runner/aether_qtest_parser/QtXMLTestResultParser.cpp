@@ -71,9 +71,23 @@ bool QtXMLTestResultParser::TryToCreateDomXMLDocument(const QString& file_conten
 	int error_column;
 
 	//Set the content of the given QDomDocument and check for errors
-	const auto xml_ok = xml_document.setContent(file_content, &error_message, &error_line, &error_column);
+	auto xml_ok = xml_document.setContent(file_content, &error_message, &error_line, &error_column);
 
-	if (xml_ok)
+	if (!xml_ok && error_message == "unexpected end of file") //unexpected end of file
+	{
+		const auto corrected_file_content = file_content +
+			"<Incident type=\"fail\" file=\"?\" line=\"?\">\n" +
+			"<Description><![CDATA[Fatal error occured. Please check the log and stack trace]]></Description>\n" +
+			"</Incident>\n" +
+			"<Duration msecs=\"0\"/>\n" +
+			"</TestFunction>\n" +
+			"<Duration msecs=\"0\"/>\n" +
+			"</TestCase>";
+
+		xml_ok = xml_document.setContent(corrected_file_content, &error_message, &error_line, &error_column);
+	}
+
+	if (!xml_ok)
 	{
 		xml_error.SetErrorMessage(error_message);
 		xml_error.SetErrorLine(error_line);
