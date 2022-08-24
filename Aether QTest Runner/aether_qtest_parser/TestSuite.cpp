@@ -16,6 +16,11 @@ void TestSuite::AddConfiguration(const QString& config_key, const QString& confi
 	m_configurations.insert(config_key, config_value);
 }
 
+const QMap<QString, QString>& TestSuite::Configurations() const
+{
+	return m_configurations;
+}
+
 void TestSuite::AddTestCase(const TestCase& test_case)
 {
 	m_test_cases.append(test_case);

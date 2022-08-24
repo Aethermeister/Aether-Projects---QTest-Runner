@@ -1,4 +1,5 @@
 #pragma once
+#include "aether_qtest_parser_global.h"
 #include "TestCase.h"
 
 #include <QtCore/QMap>
@@ -7,9 +8,10 @@
 /**
  * @brief The TestSuite class holds the related TestCase objects and additional test run related information
 */
-class TestSuite
+class AETHER_QTEST_PARSER_EXPORT TestSuite
 {
 public:
+	explicit TestSuite() = default;
 	explicit TestSuite(const QString& name);
 	virtual ~TestSuite() = default;
 
@@ -20,6 +22,12 @@ public:
 	 * @param config_value The value of the configuration data
 	*/
 	void AddConfiguration(const QString& config_key, const QString& config_value);
+	/**
+	 * @brief Returns the configuration map associated with the test suite
+	 * 
+	 * @return The configuration map
+	*/
+	const QMap<QString, QString>& Configurations() const;
 	/**
 	 * @brief Add test case to the test suite
 	 * 

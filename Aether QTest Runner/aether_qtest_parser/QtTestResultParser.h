@@ -1,7 +1,6 @@
 #pragma once
-#include "QtXMLTestResultParser.h"
-
 #include "aether_qtest_parser_global.h"
+#include "QtXMLTestResultParser.h"
 
 class AETHER_QTEST_PARSER_EXPORT QtTestResultParser
 {

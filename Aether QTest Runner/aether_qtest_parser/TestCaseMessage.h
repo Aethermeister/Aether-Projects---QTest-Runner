@@ -1,11 +1,12 @@
 #pragma once
+#include "aether_qtest_parser_global.h"
 
 #include <QtCore/QString>
 
 /**
  * @brief Message class to handle additional test case information
 */
-class TestCaseMessage
+class AETHER_QTEST_PARSER_EXPORT TestCaseMessage
 {
 public:
 	explicit TestCaseMessage() = default;

@@ -1,4 +1,5 @@
 #pragma once
+#include "aether_qtest_parser_global.h"
 #include "TestCaseMessage.h"
 
 #include <QtCore/QVector>
@@ -6,7 +7,7 @@
 /**
  * @brief The TestCase class wraps the test case related information
 */
-class TestCase
+class AETHER_QTEST_PARSER_EXPORT TestCase
 {
 public:
 	explicit TestCase() = default;
@@ -32,11 +33,23 @@ public:
 	*/
 	void AddMessage(const TestCaseMessage& message);
 	/**
+	 * @brief Returns the messages associated with this test case
+	 * 
+	 * @return The list of messages
+	*/
+	const QVector<TestCaseMessage>& Messages() const;
+	/**
 	 * @brief Set the fail/pass test case message as the incident
 	 * 
 	 * @param message The message object which describes the overall test case state
 	*/
 	void SetIncident(const TestCaseMessage& message);
+	/**
+	 * @brief Returns the fail incident of the test case
+	 * 
+	 * @return The Incident object
+	*/
+	const TestCaseMessage& Incident() const;
 	/**
 	 * @brief Set the duration of the test case
 	 * 
@@ -57,7 +70,7 @@ public:
 	const QString& DurationMsString() const;
 
 	/**
-	 * @brief Resturns the passed state of the test case
+	 * @brief Returns the passed state of the test case
 	 * 
 	 * @return True if the test case is passed
 	*/

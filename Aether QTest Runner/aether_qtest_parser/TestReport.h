@@ -1,4 +1,5 @@
 #pragma once
+#include "aether_qtest_parser_global.h"
 #include "TestSuite.h"
 #include "XMLError.h"
 
@@ -7,7 +8,7 @@
 /**
  * @brief The TestReport class holds all information about a test run. Its parts are one or more test suites
 */
-class TestReport
+class AETHER_QTEST_PARSER_EXPORT TestReport
 {
 public:
 	explicit TestReport() = default;

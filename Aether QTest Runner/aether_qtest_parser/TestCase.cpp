@@ -19,10 +19,20 @@ void TestCase::AddMessage(const TestCaseMessage& message)
 	m_messages.append(message);
 }
 
+const QVector<TestCaseMessage>& TestCase::Messages() const
+{
+	return m_messages;
+}
+
 void TestCase::SetIncident(const TestCaseMessage& message)
 {
 	m_is_test_case_passed = false;
 	m_incident_message = message;
+}
+
+const TestCaseMessage& TestCase::Incident() const
+{
+	return m_incident_message;
 }
 
 void TestCase::SetDurationMs(const QString& duration)
