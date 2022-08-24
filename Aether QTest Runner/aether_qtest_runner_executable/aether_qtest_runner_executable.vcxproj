@@ -105,21 +105,39 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="TestCaseDetailsWidget.cpp" />
     <ClCompile Include="TestExecutionProgressDialog.cpp" />
+    <ClCompile Include="TestResultTabWidget.cpp" />
     <ClCompile Include="TestRunConfigurationWidget.cpp" />
+    <ClCompile Include="TestSuiteDetailsWidget.cpp" />
+    <ClCompile Include="TestsWidget.cpp" />
     <QtRcc Include="aether_qtest_runner.qrc" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="MainWindow.h" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="TestCaseDetailsWidget.ui" />
     <QtUic Include="TestExecutionProgressDialog.ui" />
     <QtUic Include="TestRunConfigurationWidget.ui" />
+    <QtUic Include="TestSuiteDetailsWidget.ui" />
+    <QtUic Include="TestsWidget.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestRunConfigurationWidget.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestExecutionProgressDialog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="TestResultTabWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="TestsWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ColorDefines.h" />
+    <QtMoc Include="TestSuiteDetailsWidget.h" />
+    <QtMoc Include="TestCaseDetailsWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

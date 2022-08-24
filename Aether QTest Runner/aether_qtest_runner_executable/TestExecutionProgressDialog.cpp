@@ -6,6 +6,8 @@ TestExecutionProgressDialog::TestExecutionProgressDialog(const QString& informat
 	ui.setupUi(this);
 
 	setAttribute(Qt::WA_DeleteOnClose);
+	setWindowFlags(Qt::Tool | Qt::CustomizeWindowHint | Qt::WindowTitleHint);
+
 	ui.m_progress_information_lbl->setText(information_text);
 	connect(ui.m_cancel_btn, &QPushButton::clicked, this, &TestExecutionProgressDialog::CancelTestExecution);
 }
