@@ -112,6 +112,7 @@
     <ClCompile Include="TestRunConfigurationWidget.cpp" />
     <ClCompile Include="TestSuiteDetailsWidget.cpp" />
     <ClCompile Include="TestsWidget.cpp" />
+    <ClCompile Include="XMLContentTabWidget.cpp" />
     <QtRcc Include="aether_qtest_runner.qrc" />
     <QtUic Include="MainWindow.ui" />
     <QtMoc Include="MainWindow.h" />
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorDefines.h" />
+    <QtMoc Include="XMLContentTabWidget.h" />
     <QtMoc Include="StackTraceWidget.h" />
     <QtMoc Include="TestSuiteDetailsWidget.h" />
     <QtMoc Include="TestCaseDetailsWidget.h" />

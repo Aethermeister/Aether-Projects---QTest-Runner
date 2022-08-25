@@ -61,6 +61,9 @@
     <ClCompile Include="StackTraceWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMLContentTabWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestRunConfigurationWidget.h">
@@ -82,6 +85,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="StackTraceWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="XMLContentTabWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

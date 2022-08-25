@@ -85,6 +85,19 @@ public:
 	*/
 	const QVector<TestCase>& TestCases() const;
 
+	/**
+	 * @brief Setter of the original content of the XML rest result document
+	 * 
+	 * @param raw_xml_content The content of the test result XML document
+	*/
+	void SetRawXMLContent(const QString& raw_xml_content);
+	/**
+	 * @brief Getter of the original content of the test result XML document
+	 * 
+	 * @return The original content of the test result XML document
+	*/
+	const QString& RawXMLContent() const;
+
 private:
 	/**
 	 * @brief The name of the test suite
@@ -102,5 +115,9 @@ private:
 	 * @brief The test suite related TestCase objects
 	*/
 	QVector<TestCase> m_test_cases;
+	/**
+	 * @brief The original content of the test result XML document
+	*/
+	QString m_raw_xml_content;
 };
 

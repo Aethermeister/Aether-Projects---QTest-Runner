@@ -60,3 +60,13 @@ const QVector<TestCase>& TestSuite::TestCases() const
 {
 	return m_test_cases;
 }
+
+void TestSuite::SetRawXMLContent(const QString& raw_xml_content)
+{
+	m_raw_xml_content = raw_xml_content;
+}
+
+const QString& TestSuite::RawXMLContent() const
+{
+	return m_raw_xml_content;
+}

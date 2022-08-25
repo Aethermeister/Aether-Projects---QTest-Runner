@@ -20,6 +20,11 @@ void StackTraceWidget::InitializeUi()
 	else
 	{
 		auto* output_text_edit = new QTextEdit(this);
+		output_text_edit->setReadOnly(true);
+		output_text_edit->setFrameShape(QFrame::Shape::NoFrame);
+		output_text_edit->setFrameShadow(QFrame::Shadow::Plain);
+		output_text_edit->setLineWidth(0);
+
 		ui.m_widget_layout->addWidget(output_text_edit);
 
 		const auto output_information =

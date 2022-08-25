@@ -39,8 +39,9 @@ void QtXMLTestResultParser::ParseQtXMLTestResult(const QString& file)
 	//Set the XMLError object if an error occurs
 	QDomDocument qt_xml_test_result_document("QtTestResultDocument");
 	XMLError xml_parser_error(file);
+	const auto test_result_xml_content = test_result_file.readAll();
 
-	if (TryToCreateDomXMLDocument(test_result_file.readAll(), qt_xml_test_result_document, xml_parser_error))
+	if (TryToCreateDomXMLDocument(test_result_xml_content, qt_xml_test_result_document, xml_parser_error))
 	{
 		//Get the root element of the xml document and check wheter it is an appropriate Qt generated test result
 		const auto qt_xml_document_element = qt_xml_test_result_document.documentElement();
@@ -62,6 +63,7 @@ void QtXMLTestResultParser::ParseQtXMLTestResult(const QString& file)
 
 		//Create a Test Suite object for this xml document and extract the environment/configuration and test case data from the xml document
 		TestSuite test_suite(qt_test_suite_name);
+		test_suite.SetRawXMLContent(test_result_xml_content);
 
 		ExtractEnvironmentData(qt_xml_test_result_document, test_suite);
 		ExtractTestFunctionData(qt_xml_test_result_document, test_suite);
