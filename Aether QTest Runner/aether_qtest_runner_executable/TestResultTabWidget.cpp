@@ -1,7 +1,8 @@
 #include "TestResultTabWidget.h"
 #include "TestsWidget.h"
+#include "StackTraceWidget.h"
 
-TestResultTabWidget::TestResultTabWidget(const TestRunConfigurationData& test_run_configuration_data, const TestRunProcessData& test_run_process_data, const TestReport& test_report, QWidget *parent)
+TestResultTabWidget::TestResultTabWidget(const TestRunConfigurationData& test_run_configuration_data, const TestRunProcessData& test_run_process_data, const TestReport& test_report, QWidget* parent)
 	: QTabWidget(parent), m_test_run_configuration_data(test_run_configuration_data), m_test_run_process_data(test_run_process_data), m_test_report(test_report)
 {
 	InitializeUi();
@@ -11,4 +12,7 @@ void TestResultTabWidget::InitializeUi()
 {
 	auto* tests_widget = new TestsWidget(m_test_report, this);
 	addTab(tests_widget, "Tests");
+
+	auto* stack_trace_widget = new StackTraceWidget(m_test_run_process_data, this);
+	addTab(stack_trace_widget, "Stack trace");
 }

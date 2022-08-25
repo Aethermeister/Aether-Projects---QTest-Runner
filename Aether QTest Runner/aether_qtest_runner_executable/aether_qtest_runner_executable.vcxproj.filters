@@ -58,6 +58,9 @@
     <ClCompile Include="TestSuiteDetailsWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="StackTraceWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestRunConfigurationWidget.h">
@@ -78,6 +81,9 @@
     <QtMoc Include="TestSuiteDetailsWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="StackTraceWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="TestRunConfigurationWidget.ui">
@@ -93,6 +99,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="TestSuiteDetailsWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="StackTraceWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

@@ -105,6 +105,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="StackTraceWidget.cpp" />
     <ClCompile Include="TestCaseDetailsWidget.cpp" />
     <ClCompile Include="TestExecutionProgressDialog.cpp" />
     <ClCompile Include="TestResultTabWidget.cpp" />
@@ -116,6 +117,7 @@
     <QtMoc Include="MainWindow.h" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="StackTraceWidget.ui" />
     <QtUic Include="TestCaseDetailsWidget.ui" />
     <QtUic Include="TestExecutionProgressDialog.ui" />
     <QtUic Include="TestRunConfigurationWidget.ui" />
@@ -136,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorDefines.h" />
+    <QtMoc Include="StackTraceWidget.h" />
     <QtMoc Include="TestSuiteDetailsWidget.h" />
     <QtMoc Include="TestCaseDetailsWidget.h" />
   </ItemGroup>
