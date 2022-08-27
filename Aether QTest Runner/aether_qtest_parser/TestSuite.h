@@ -60,6 +60,12 @@ public:
 	*/
 	const QString& Name() const;
 	/**
+	 * @brief Return the passed state of the test suite
+	 *
+	 * @return The passed state of the test suite
+	*/
+	bool IsPassed() const;
+	/**
 	 * @brief Returns the number of test cases of the test suite
 	 *
 	 * @return The test case count in the test suite

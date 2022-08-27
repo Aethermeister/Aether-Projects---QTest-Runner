@@ -32,12 +32,12 @@
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>5.15.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;charts</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtInstall>5.15.2_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;widgets;charts</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -105,6 +105,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="OverviewWidget.cpp" />
     <ClCompile Include="StackTraceWidget.cpp" />
     <ClCompile Include="TestCaseDetailsWidget.cpp" />
     <ClCompile Include="TestExecutionProgressDialog.cpp" />
@@ -118,6 +119,7 @@
     <QtMoc Include="MainWindow.h" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="OverviewWidget.ui" />
     <QtUic Include="StackTraceWidget.ui" />
     <QtUic Include="TestCaseDetailsWidget.ui" />
     <QtUic Include="TestExecutionProgressDialog.ui" />
@@ -139,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColorDefines.h" />
+    <QtMoc Include="OverviewWidget.h" />
     <QtMoc Include="XMLContentTabWidget.h" />
     <QtMoc Include="StackTraceWidget.h" />
     <QtMoc Include="TestSuiteDetailsWidget.h" />

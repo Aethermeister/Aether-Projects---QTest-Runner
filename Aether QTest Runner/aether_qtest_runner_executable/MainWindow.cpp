@@ -2,6 +2,7 @@
 #include "TestExecutionProgressDialog.h"
 #include "TestResultTabWidget.h"
 
+#include <QtCore/QElapsedTimer>
 #include <QtCore/QProcess>
 #include <QtCore/QDir>
 
@@ -62,7 +63,8 @@ void MainWindow::TestRunConfigured(const TestRunConfigurationData& test_run_conf
 {
 	auto* sender_widget = qobject_cast<QWidget*>(sender());
 
-	auto* test_run_process = new QProcess();
+	auto* test_run_process_timer = new QElapsedTimer();
+	auto* test_run_process = new QProcess(this);
 	test_run_process->setWorkingDirectory(test_run_configuration_data.working_directory);
 	test_run_process->setProgram(test_run_configuration_data.test_executable_path);
 
@@ -84,10 +86,13 @@ void MainWindow::TestRunConfigured(const TestRunConfigurationData& test_run_conf
 			test_run_process_data.exit_code = exit_code;
 			test_run_process_data.standard_output = test_run_process->readAllStandardOutput();
 			test_run_process_data.standard_error = test_run_process->readAllStandardError();
+			test_run_process_data.execution_time = test_run_process_timer->elapsed();
 
 			const auto test_report = CreateTestReport(test_run_configuration_data);
 			ShowTestResults(test_run_configuration_data, test_run_process_data, test_report);
 		}
+
+		delete test_run_process_timer;
 
 		prog_diag->close();
 		test_run_process->deleteLater();
@@ -95,5 +100,6 @@ void MainWindow::TestRunConfigured(const TestRunConfigurationData& test_run_conf
 		});
 
 	test_run_process->start();
+	test_run_process_timer->start();
 	prog_diag->exec();
 }

@@ -1,4 +1,5 @@
 #include "TestResultTabWidget.h"
+#include "OverviewWidget.h"
 #include "TestsWidget.h"
 #include "StackTraceWidget.h"
 #include "XMLContentTabWidget.h"
@@ -11,6 +12,9 @@ TestResultTabWidget::TestResultTabWidget(const TestRunConfigurationData& test_ru
 
 void TestResultTabWidget::InitializeUi()
 {
+	auto* overview_widget = new OverviewWidget(m_test_report, m_test_run_process_data, this);
+	addTab(overview_widget, "Overview");
+
 	auto* tests_widget = new TestsWidget(m_test_report, this);
 	addTab(tests_widget, "Tests");
 

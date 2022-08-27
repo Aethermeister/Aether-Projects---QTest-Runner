@@ -64,6 +64,9 @@
     <ClCompile Include="XMLContentTabWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="OverviewWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="TestRunConfigurationWidget.h">
@@ -90,6 +93,9 @@
     <QtMoc Include="XMLContentTabWidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="OverviewWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="TestRunConfigurationWidget.ui">
@@ -108,6 +114,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="StackTraceWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="OverviewWidget.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

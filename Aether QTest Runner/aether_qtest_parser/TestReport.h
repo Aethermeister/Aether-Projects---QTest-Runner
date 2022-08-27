@@ -53,6 +53,30 @@ public:
 	*/
 	int TestSuiteCount() const;
 	/**
+	 * @brief Returns the number of passed test suites of the test report
+	 *
+	 * @return The passed test suite count in the test report
+	*/
+	int PassedTestSuiteCount() const;
+	/**
+	 * @brief Returns the percentage of passed test suites of the test report
+	 *
+	 * @return The passed test suite percentage in the test report
+	*/
+	double PassedTestSuitePercentage() const;
+	/**
+	 * @brief Returns the number of failed test suites of the test report
+	 *
+	 * @return The failed test suite count in the test report
+	*/
+	int FailedTestSuiteCount() const;
+	/**
+	 * @brief Returns the percentage of failed test suites of the test report
+	 *
+	 * @return The failed test suite percentage in the test report
+	*/
+	double FailedTestSuitePercentage() const;
+	/**
 	 * @brief Returns the number of test cases of the test report
 	 *
 	 * @return The test case count in the test report
@@ -65,17 +89,36 @@ public:
 	*/
 	int PassedTestCaseCount() const;
 	/**
+	 * @brief Returns the percentage of passed test cases of the test report
+	 *
+	 * @return The passed test case percentage in the test report
+	*/
+	double PassedTestCasePercentage() const;
+	/**
 	 * @brief Returns the number of failed test cases of the test report
 	 *
 	 * @return The failed test case count in the test report
 	*/
 	int FailedTestCaseCount() const;
 	/**
+	 * @brief Returns the percentage of failed test cases of the test report
+	 *
+	 * @return The failed test case percentage in the test report
+	*/
+	double FailedTestCasePercentage() const;
+	/**
 	 * @brief Returns the overall duration of the test run
 	 * 
 	 * @return The duration of the test run in ms
 	*/
 	double TestRunDurationMs() const;
+
+	/**
+	 * @brief Return the passed state of the test report
+	 * 
+	 * @return The passed state of the test report
+	*/
+	bool IsPassed() const;
 
 private:
 	/**

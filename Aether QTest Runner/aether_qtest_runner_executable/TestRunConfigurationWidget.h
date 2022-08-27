@@ -15,6 +15,7 @@ struct TestRunProcessData
 	int exit_code;
 	QString standard_output;
 	QString standard_error;
+	qint64 execution_time;
 };
 
 class TestRunConfigurationWidget : public QWidget

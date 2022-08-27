@@ -11,6 +11,11 @@ const QString& TestSuite::Name() const
 	return m_name;
 }
 
+bool TestSuite::IsPassed() const
+{
+	return FailedTestCaseCount() == 0;
+}
+
 void TestSuite::AddConfiguration(const QString& config_key, const QString& config_value)
 {
 	m_configurations.insert(config_key, config_value);
