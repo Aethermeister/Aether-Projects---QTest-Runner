@@ -3,6 +3,7 @@
 #include "TestsWidget.h"
 #include "StackTraceWidget.h"
 #include "XMLContentTabWidget.h"
+#include "CodeCoverageResultWidget.h"
 
 TestResultTabWidget::TestResultTabWidget(const TestRunConfigurationData& test_run_configuration_data, const TestRunProcessData& test_run_process_data, const TestReport& test_report, QWidget* parent)
 	: QTabWidget(parent), m_test_run_configuration_data(test_run_configuration_data), m_test_run_process_data(test_run_process_data), m_test_report(test_report)
@@ -23,4 +24,7 @@ void TestResultTabWidget::InitializeUi()
 
 	auto* xml_content_tab_widget = new XMLContentTabWidget(m_test_report, this);
 	addTab(xml_content_tab_widget, "XML");
+
+	auto* code_coverage_result_widget = new CodeCoverageResultWidget(m_test_run_configuration_data, this);
+	addTab(code_coverage_result_widget, "Code coverage");
 }

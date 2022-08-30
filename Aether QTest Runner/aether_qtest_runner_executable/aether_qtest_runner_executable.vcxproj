@@ -105,6 +105,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CodeCoverageResultWidget.cpp" />
     <ClCompile Include="OverviewWidget.cpp" />
     <ClCompile Include="StackTraceWidget.cpp" />
     <ClCompile Include="TestCaseDetailsWidget.cpp" />
@@ -140,6 +141,7 @@
     <QtMoc Include="TestsWidget.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="CodeCoverageResultWidget.h" />
     <ClInclude Include="ColorDefines.h" />
     <QtMoc Include="OverviewWidget.h" />
     <QtMoc Include="XMLContentTabWidget.h" />
