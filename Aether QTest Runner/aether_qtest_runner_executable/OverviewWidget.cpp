@@ -13,24 +13,41 @@ OverviewWidget::OverviewWidget(const TestReport& test_report, const TestRunProce
 
 void OverviewWidget::InitializeUi()
 {
-	ui.m_title_lbl->setText(m_test_report.Title());
-
 	const QString state_text = "<b><span style=\"color: %0;\">%1</span></b>";
-	if (m_test_report.IsPassed())
+	if (m_test_report.IsEmpty())
 	{
-		ui.m_test_state_lbl->setText(state_text.arg(PASSED_TEST_CASE_COLOR).arg("All tests passed"));
+		ui.m_test_run_information_widget->setVisible(false);
+		ui.m_test_suite_chart_container_widget->setVisible(false);
+		ui.m_test_case_chart_container_widget->setVisible(false);
+
+		ui.gridLayout->removeWidget(ui.m_test_run_information_widget);
+		ui.gridLayout->removeWidget(ui.m_test_suite_chart_container_widget);
+		ui.gridLayout->removeWidget(ui.m_test_case_chart_container_widget);
+
+		auto* information_lbl = new QLabel(state_text.arg(FAILED_TEST_CASE_COLOR).arg("Test run finished but results were not found"), this);
+		information_lbl->setAlignment(Qt::AlignCenter);
+		ui.gridLayout->addWidget(information_lbl, 0, 0);
 	}
 	else
 	{
-		ui.m_test_state_lbl->setText(state_text.arg(FAILED_TEST_CASE_COLOR).arg("One or more tests failed"));
+		ui.m_title_lbl->setText(m_test_report.Title());
+
+		if (m_test_report.IsPassed())
+		{
+			ui.m_test_state_lbl->setText(state_text.arg(PASSED_TEST_CASE_COLOR).arg("All tests passed"));
+		}
+		else
+		{
+			ui.m_test_state_lbl->setText(state_text.arg(FAILED_TEST_CASE_COLOR).arg("One or more tests failed"));
+		}
+
+		ui.m_test_suites_and_cases_lbl->setText(QString("<b>%0</b> test cases were executed in <b>%1</b> test suite(s)").arg(m_test_report.TestCaseCount()).arg(m_test_report.TestSuiteCount()));
+		ui.m_duration_lbl->setText(QString("The tests run for a total of <b>%0 ms</b>").arg(m_test_run_process_data.execution_time));
+		ui.m_exit_code_lbl->setText(QString("The test executable exited with <b>%0</b>").arg(m_test_run_process_data.exit_code));
+
+		CreateTestSuiteStatisticsChart();
+		CreateTestCaseStatisticsChart();
 	}
-
-	ui.m_test_suites_and_cases_lbl->setText(QString("<b>%0</b> test cases were executed in <b>%1</b> test suite(s)").arg(m_test_report.TestCaseCount()).arg(m_test_report.TestSuiteCount()));
-	ui.m_duration_lbl->setText(QString("The tests run for a total of <b>%0 ms</b>").arg(m_test_run_process_data.execution_time));
-	ui.m_exit_code_lbl->setText(QString("The test executable exited with <b>%0</b>").arg(m_test_run_process_data.exit_code));
-
-	CreateTestSuiteStatisticsChart();
-	CreateTestCaseStatisticsChart();
 }
 
 void OverviewWidget::CreateTestSuiteStatisticsChart()

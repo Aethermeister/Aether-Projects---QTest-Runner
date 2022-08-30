@@ -119,6 +119,12 @@ public:
 	 * @return The passed state of the test report
 	*/
 	bool IsPassed() const;
+	/**
+	 * @brief Return whether the test report has valid test suites in it
+	 * 
+	 * @return The test report state whether it has valid test suites
+	*/
+	bool IsEmpty() const;
 
 private:
 	/**

@@ -86,3 +86,8 @@ bool TestReport::IsPassed() const
 {
 	return FailedTestSuiteCount() == 0;
 }
+
+bool TestReport::IsEmpty() const
+{
+	return m_test_suites.isEmpty();
+}
