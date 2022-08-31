@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>QTest Runner</string>
   </property>
   <widget class="QWidget" name="m_central_widget">
    <layout class="QGridLayout" name="m_central_widget_layout"/>
@@ -37,8 +37,16 @@
     </property>
     <addaction name="m_run_test_action"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="m_about_action"/>
+    <addaction name="m_about_qt_action"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTest"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="m_exit_action">
@@ -49,6 +57,16 @@
   <action name="m_run_test_action">
    <property name="text">
     <string>Run Test</string>
+   </property>
+  </action>
+  <action name="m_about_action">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="m_about_qt_action">
+   <property name="text">
+    <string>About Qt</string>
    </property>
   </action>
  </widget>

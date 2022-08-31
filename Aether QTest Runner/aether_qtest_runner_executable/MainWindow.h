@@ -17,6 +17,7 @@ private:
 	Ui::MainWindowClass ui;
 
 	void InitializeConnections() const;
+	void InitializeUi();
 
 	TestReport CreateTestReport(const TestRunConfigurationData& test_run_configuration_data) const;
 	void ShowTestResults(const TestRunConfigurationData& test_run_configuration_data, const TestRunProcessData& test_run_process_data, const TestReport& test_report);
@@ -26,4 +27,7 @@ private:
 private slots:
 	void ShowTestRunConfigurationWidget();
 	void TestRunConfigured(const TestRunConfigurationData& test_run_configuration_data);
+
+	void ShowAbout();
+	void ShowAboutQt() const;
 };

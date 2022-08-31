@@ -5,6 +5,8 @@
 #include <QtCore/QElapsedTimer>
 #include <QtCore/QProcess>
 #include <QtCore/QDir>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QMessageBox>
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -12,12 +14,31 @@ MainWindow::MainWindow(QWidget* parent)
 	ui.setupUi(this);
 
 	InitializeConnections();
+	InitializeUi();
 }
 
 void MainWindow::InitializeConnections() const
 {
 	connect(ui.m_exit_action, &QAction::triggered, this, &MainWindow::close);
 	connect(ui.m_run_test_action, &QAction::triggered, this, &MainWindow::ShowTestRunConfigurationWidget);
+
+	connect(ui.m_about_action, &QAction::triggered, this, &MainWindow::ShowAbout);
+	connect(ui.m_about_qt_action, &QAction::triggered, this, &MainWindow::ShowAboutQt);
+}
+
+void MainWindow::InitializeUi()
+{
+	setWindowIcon(QIcon(":/Resources/aether_projects_logo.png"));
+
+	const QString information_text =
+		"<h2>Run tests and evaulate the results</h2>"
+		"<hr width=300>"
+		"<p>Test > Run Test</p>";
+
+	auto* initial_information_lbl = new QLabel(this);
+	initial_information_lbl->setText(information_text);
+	initial_information_lbl->setAlignment(Qt::AlignCenter);
+	ui.m_central_widget_layout->addWidget(initial_information_lbl);
 }
 
 TestReport MainWindow::CreateTestReport(const TestRunConfigurationData& test_run_configuration_data) const
@@ -121,4 +142,26 @@ void MainWindow::TestRunConfigured(const TestRunConfigurationData& test_run_conf
 	test_run_process->start();
 	test_run_process_timer->start();
 	prog_diag->exec();
+}
+
+void MainWindow::ShowAbout()
+{
+	const QString about_message =
+		"<h3>QTest Runner</h3>"
+		"<p>Version: 1.0</p>"
+		"<br>"
+		"<pre><p><i>\tAether Projects 2022</i></p></pre>";
+
+	auto* about_message_box = new QMessageBox(QMessageBox::Icon::NoIcon, "About", about_message, QMessageBox::StandardButton::NoButton, this);
+
+	QPixmap aether_project_logo(":/Resources/aether_projects_logo.png");
+	about_message_box->setIconPixmap(aether_project_logo.scaled(125, 125, Qt::AspectRatioMode::KeepAspectRatio, Qt::TransformationMode::SmoothTransformation));
+
+	about_message_box->exec();
+	about_message_box->deleteLater();
+}
+
+void MainWindow::ShowAboutQt() const
+{
+	QApplication::aboutQt();
 }
